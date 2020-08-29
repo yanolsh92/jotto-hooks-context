@@ -7,6 +7,7 @@ import guessedWordsContext from './contexts/guessedWordsContext';
 import LanguagePicker from './LanguagePicker';
 import Congrats from './Congrats';
 import GuessedWords from './GuessedWords';
+import NewWordButton from './NewWordButton';
 
 import './App.css';
 
@@ -65,6 +66,7 @@ function App() {
         <guessedWordsContext.GuessedWordsProvider>
           <successContext.SuccessProvider>
             <Congrats />
+            <NewWordButton {...setSecretWord} />
             <Input secretWord={state.secretWord} />
           </successContext.SuccessProvider>
           <GuessedWords />
