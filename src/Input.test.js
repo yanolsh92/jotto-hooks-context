@@ -3,23 +3,25 @@ import { mount } from 'enzyme';
 import { findByTestAttr, checkProps } from '../test/testUtils';
 import Input from './Input';
 import languageContext from './contexts/languageContext';
+import successContext from './contexts/successContext';
+import guessedWordsContext from './contexts/guessedWordsContext';
 /**
  * Create ReactWrapper for Input component for testing
  * @param {object} testValues - Context and props values for this specific test.
  * @returns {ReactWrapper} - Wrapper for Input component and providers
  */
-const setup = ({ language, secretWord }) => {
+const setup = ({ language, secretWord, success }) => {
   language = language || 'en';
   secretWord = secretWord || 'party';
-  // success = success || false;
+  success = success || false;
 
   return mount(
     <languageContext.Provider value={language}>
-      {/* <successContext.SuccessProvider value={[success, jest.fn()]}> */}
-      {/* <guessedWordsContext.GuessedWordsProvider> */}
-      <Input secretWord={secretWord} />
-      {/* </guessedWordsContext.GuessedWordsProvider> */}
-      {/* </successContext.SuccessProvider> */}
+      <successContext.SuccessProvider value={[success, jest.fn()]}>
+        <guessedWordsContext.GuessedWordsProvider>
+          <Input secretWord={secretWord} />
+        </guessedWordsContext.GuessedWordsProvider>
+      </successContext.SuccessProvider>
     </languageContext.Provider>
   );
 };
@@ -64,5 +66,9 @@ describe('languagePicker', () => {
     const wrapper = setup({ language: 'emoji' });
     const submitButton = findByTestAttr(wrapper, 'submit-button');
     expect(submitButton.text()).toBe('🚀');
+  });
+  test('input component does not show when success is true', () => {
+    const wrapper = setup({ secretWord: 'party', success: true });
+    expect(wrapper.isEmptyRender()).toBe(true);
   });
 });
