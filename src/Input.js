@@ -19,6 +19,9 @@ const Input = (props) => {
           className='btn btn-primary mb-2'
           onClick={(evt) => {
             evt.preventDefault();
+            //TODO: update guessedWords
+            //TODO: check against secretWord and update succes if needed
+            setCurrentGuess('');
           }}
         >
           Submit
