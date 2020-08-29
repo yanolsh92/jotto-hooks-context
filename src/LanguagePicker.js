@@ -7,21 +7,25 @@ function LanguagePicker({ setLanguage }) {
     { code: 'emoji', symbol: '😊' },
   ];
 
-  const languageIcons = languages.map((lang) => (
+  const languageIcons = languages.map(lang =>
     <span
-      data-test='language-icon'
+      data-test="language-icon"
       key={lang.code}
       onClick={() => setLanguage(lang.code)}
     >
-      {lang.symbol}
+    {lang.symbol}
     </span>
-  ));
+  );
 
-  return <div data-test='component-language-picker'>{languageIcons}</div>;
+  return (
+    <div data-test="component-language-picker">
+      {languageIcons}
+    </div>
+  );
 }
 
 LanguagePicker.propTypes = {
   setLanguage: propTypes.func.isRequired,
-};
+}
 
 export default LanguagePicker;

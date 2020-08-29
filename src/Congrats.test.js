@@ -6,12 +6,13 @@ import Congrats from './Congrats';
 import languageContext from './contexts/languageContext';
 import successContext from './contexts/successContext';
 
+
 /**
- * Factory function to create a ReactWrapper for the Congrats component.
- * @function setup
- * @param {object} testValues - contextValues specific to this setup.
- * @returns {ReactWrapper}
- */
+* Factory function to create a ReactWrapper for the Congrats component.
+* @function setup
+* @param {object} testValues - contextValues specific to this setup.
+* @returns {ReactWrapper}
+*/
 const setup = ({ success, language }) => {
   language = language || 'en';
   success = success || false;
@@ -23,7 +24,7 @@ const setup = ({ success, language }) => {
       </successContext.SuccessProvider>
     </languageContext.Provider>
   );
-};
+}
 
 describe('language picker', () => {
   test('correctly renders congrats string in English by default', () => {
@@ -31,7 +32,7 @@ describe('language picker', () => {
     expect(wrapper.text()).toBe('Congratulations! You guessed the word!');
   });
   test('correctly renders congrats string in emoji', () => {
-    const wrapper = setup({ success: true, language: 'emoji' });
+    const wrapper = setup({ success: true, language: "emoji" });
     expect(wrapper.text()).toBe('🎯🎉');
   });
 });

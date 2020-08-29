@@ -14,6 +14,17 @@ const languageStrings = {
     // Challenge #2: Reset Game
     newWord: 'New Word',
     // END: Challenge #2: Reset Game
+    // Challenge #3: Give up
+    giveUp: 'Give Up',
+    secretWordWas: 'The secret word was',
+    betterLuck: 'Better luck next time!',
+    // END: Challenge #3: Give up
+    // Challenge #4: Enter Secret Word
+    enterSecretWord: 'Enter your own secret word',
+    // END: Challenge #4: Enter Secret Word
+    // Challenge #5: Server Error
+    serverError: 'There was an error retrieving the secret word. Please try again later.',
+    // END: Challenge #5: Server Error
   },
   emoji: {
     congrats: '🎯🎉',
@@ -30,14 +41,21 @@ const languageStrings = {
     // Challenge #2: Reset Game
     newWord: '✨🔤',
     // END: Challenge #2: Reset Game
-  },
-};
+    // Challenge #3: Give up
+    giveUp: '😩',
+    secretWordWas: '🤫🔤',
+    betterLuck: '🍀✨🔤',
+    // END: Challenge #3: Give up
+    // Challenge #4: Enter Secret Word
+    enterSecretWord: '👩‍💻🤫🔤',
+    // END: Challenge #4: Enter Secret Word
+    // Challenge #5: Server Error
+    serverError: '🚨. ⏲.',
+    // END: Challenge #5: Server Error
+  }
+}
 
-function getStringByLanguage(
-  languageCode,
-  stringKey,
-  strings = languageStrings
-) {
+function getStringByLanguage(languageCode, stringKey, strings=languageStrings) {
   if (!strings[languageCode] || !strings[languageCode][stringKey]) {
     console.warn(`Could not get string [${stringKey}] for [${languageCode}]`);
 
@@ -51,4 +69,4 @@ function getStringByLanguage(
 // for future mocking
 export default {
   getStringByLanguage,
-};
+}

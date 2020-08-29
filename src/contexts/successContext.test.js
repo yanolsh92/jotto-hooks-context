@@ -7,7 +7,7 @@ import successContext from './successContext';
 const FunctionalComponent = () => {
   successContext.useSuccess();
   return <div />;
-};
+}
 
 test('useSuccess throws error when not wrapped in SuccessProvider', () => {
   expect(() => {
@@ -21,6 +21,6 @@ test('useSuccess does not throw error when wrapped in SuccessProvider', () => {
       <successContext.SuccessProvider>
         <FunctionalComponent />
       </successContext.SuccessProvider>
-    );
+    )
   }).not.toThrow();
-});
+})

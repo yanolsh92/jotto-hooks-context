@@ -7,21 +7,19 @@ import guessedWordsContext from './contexts/guessedWordsContext';
 import { number } from 'prop-types';
 
 /**
- * Factory function to create a ShallowWrapper for the GuessedWords component.
- * @function setup
- * @param {array} guessedWords - guessedWords value specific to this setup.
- * @returns {ShallowWrapper}
- */
-const setup = (guessedWords = []) => {
-  const mockUseGuessedWords = jest
-    .fn()
-    .mockReturnValue([guessedWords, jest.fn()]);
+* Factory function to create a ShallowWrapper for the GuessedWords component.
+* @function setup
+* @param {array} guessedWords - guessedWords value specific to this setup.
+* @returns {ShallowWrapper}
+*/
+const setup = (guessedWords=[]) => {
+  const mockUseGuessedWords = jest.fn().mockReturnValue([guessedWords, jest.fn()]);
   guessedWordsContext.useGuessedWords = mockUseGuessedWords;
-  return shallow(<GuessedWords />);
+  return shallow(<GuessedWords />)
 };
 
 describe('if there are no words guessed', () => {
-  let wrapper;
+  let wrapper
   beforeEach(() => {
     wrapper = setup([]);
   });
@@ -44,7 +42,7 @@ describe('if there are words guessed', () => {
   beforeEach(() => {
     wrapper = setup(guessedWords);
   });
-  test('renders without error', () => {
+  test ('renders without error', () => {
     const component = findByTestAttr(wrapper, 'component-guessed-words');
     expect(component.length).toBe(1);
   });
@@ -59,30 +57,28 @@ describe('if there are words guessed', () => {
   // Challenge #1: Number of Guesses
   test('includes guess word index for each word', () => {
     const guessWordIndexes = findByTestAttr(wrapper, 'guessed-word-index');
-    const indexesText = guessWordIndexes.map((wrapper) => wrapper.text());
-    const expectedText = guessedWords.map((word, index) =>
-      (index + 1).toString()
-    );
+    const indexesText = guessWordIndexes.map(wrapper => wrapper.text());
+    const expectedText = guessedWords.map((word, index) => (index + 1).toString());
     expect(indexesText).toEqual(expectedText);
   });
   test('number of guesses is displayed correctly', () => {
     const numberOfGuessesDiv = findByTestAttr(wrapper, 'total-guesses');
-    expect(numberOfGuessesDiv.text()).toContain(guessedWords.length);
-  });
+    expect(numberOfGuessesDiv.text()).toContain(guessedWords.length)
+  })
   // END: Challenge #1: Number of Guesses
 });
 
-describe('languagePicker', () => {
-  test('correctly renders guess instructions string in English by default', () => {
+describe("languagePicker", () => {
+  test("correctly renders guess instructions string in English by default", () => {
     const wrapper = setup([]);
-    const guessInstructions = findByTestAttr(wrapper, 'guess-instructions');
+    const guessInstructions = findByTestAttr(wrapper, "guess-instructions");
     expect(guessInstructions.text()).toBe('Try to guess the secret word!');
   });
-  test('correctly renders guess instructions string in emoji', () => {
+  test("correctly renders guess instructions string in emoji", () => {
     const mockUseContext = jest.fn().mockReturnValue('emoji');
     React.useContext = mockUseContext;
     const wrapper = setup([]);
-    const guessInstructions = findByTestAttr(wrapper, 'guess-instructions');
+    const guessInstructions = findByTestAttr(wrapper, "guess-instructions");
     expect(guessInstructions.text()).toBe('🤔🤫🔤');
   });
 });

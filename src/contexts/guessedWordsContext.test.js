@@ -7,11 +7,11 @@ import { GuessedWordsProvider, useGuessedWords } from './GuessedWordsContext';
 const FunctionalComponent = () => {
   useGuessedWords();
   return <div />;
-};
+}
 
 test('useGuessedWords throws error when not wrapped in GuessedWordsProvider', () => {
   expect(() => {
-    shallow(<FunctionalComponent />);
+    shallow(<FunctionalComponent />)
   }).toThrow('useGuessedWords must be used within a GuessedWordsProvider');
 });
 
@@ -21,6 +21,6 @@ test('useGuessedWords does not throw error when wrapped in GuessedWordsProvider'
       <GuessedWordsProvider>
         <FunctionalComponent />
       </GuessedWordsProvider>
-    );
-  }).not.toThrow();
+    )
+  }).not.toThrow()
 });
